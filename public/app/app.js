@@ -4,6 +4,11 @@ angular.module('jsonMart', ['ui.router']).config(function($stateProvider, $urlRo
     url: '/shopping',
     templateUrl: 'app/views/shopping/shoppingTmpl.html',
     controller: 'shoppingCtrl',
+    resolve: {
+      products: function(mainService) {
+        return mainService.getProducts();
+      },
+    },
   }).state('admin', {
     url: '/admin',
     templateUrl: 'app/views/admin/adminTmpl.html',
