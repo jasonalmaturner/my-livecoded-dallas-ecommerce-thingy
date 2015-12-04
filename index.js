@@ -34,7 +34,7 @@ app.put('/api/product/:id', productCtrl.editProduct);
 app.delete('/api/product/:id', productCtrl.archiveProduct);
 
 // // order endpoints
-// app.post('/api/order', orderCtrl.addCart);
+app.post('/api/order', orderCtrl.addCart);
 
 // Connecting shiz
 app.listen(port, function() {
