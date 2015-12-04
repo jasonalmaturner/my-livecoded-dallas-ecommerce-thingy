@@ -6,7 +6,10 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   monguUri = 'mongodb://localhost:27017/dallascommerce',
-  middleware = require('./server-assets/middleware/header');
+  middleware = require('./server-assets/middleware/header'),
+  userCtrl = require('./server-assets/controllers/userCtrl'),
+  productCtrl = require('./server-assets/controllers/productCtrl');
+  orderCtrl = require('./server-assets/controllers/orderCtrl');
 
 // Replacing mpromise with q
 mongoose.Promise = require('q').Promise;
@@ -14,7 +17,21 @@ mongoose.Promise = require('q').Promise;
 // middleware
 app.use(cors(), bodyParser.json(), express.static(__dirname + '/public'), middleware.poop);
 
-// endpoints
+// user endpoints
+app.post('/api/user', userCtrl.addUser);
+app.get('/api/user', userCtrl.getUser);
+
+// // cart endpoints
+// app.put('/api/cart', userCtrl.editCart);
+
+// product endpoints
+app.post('/api/product', productCtrl.addProduct);
+app.get('/api/products', productCtrl.getProducts);
+app.put('/api/product/:id', productCtrl.editProduct);
+app.delete('/api/product/:id', productCtrl.archiveProduct);
+
+// // order endpoints
+// app.post('/api/order', orderCtrl.addCart);
 
 // Connecting shiz
 app.listen(port, function() {
