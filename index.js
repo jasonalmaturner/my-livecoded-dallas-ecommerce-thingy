@@ -9,7 +9,8 @@ var express = require('express'),
   middleware = require('./server-assets/middleware/header'),
   userCtrl = require('./server-assets/controllers/userCtrl'),
   productCtrl = require('./server-assets/controllers/productCtrl');
-  orderCtrl = require('./server-assets/controllers/orderCtrl');
+  orderCtrl = require('./server-assets/controllers/orderCtrl'),
+  cartCtrl = require('./server-assets/controllers/cartCtrl');
 
 // Replacing mpromise with q
 mongoose.Promise = require('q').Promise;
@@ -21,8 +22,10 @@ app.use(cors(), bodyParser.json(), express.static(__dirname + '/public'), middle
 app.post('/api/user', userCtrl.addUser);
 app.get('/api/user', userCtrl.getUser);
 
-// // cart endpoints
-// app.put('/api/cart', userCtrl.editCart);
+// cart endpoints
+app.post('/api/cart/:id', cartCtrl.addItem);
+app.put('/api/cart/:id', cartCtrl.editCart);
+app.delete('/api/cart/:id', cartCtrl.removeItem);
 
 // product endpoints
 app.post('/api/product', productCtrl.addProduct);

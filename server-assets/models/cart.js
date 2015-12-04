@@ -1,3 +1,5 @@
+// Disregard. Not using at the moment
+
 var mongoose = require('mongoose');
 
 var cartSchema = new mongoose.Schema({
@@ -5,7 +7,7 @@ var cartSchema = new mongoose.Schema({
     product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
     quantity: { type: Number, default: 1, min: 0 },
   }],
-  updated: { type: Date },
+  updated: { type: Date, default: Date.now },
 });
 
 cartSchema.pre('save', function(next) {
