@@ -33,7 +33,7 @@ app.get('/api/products', productCtrl.getProducts);
 app.put('/api/product/:id', productCtrl.editProduct);
 app.delete('/api/product/:id', productCtrl.archiveProduct);
 
-// // order endpoints
+// order endpoints, will create more endpoints to edit carts
 app.post('/api/order', orderCtrl.addCart);
 
 // Connecting shiz
