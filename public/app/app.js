@@ -8,6 +8,10 @@ angular.module('jsonMart', ['ui.router']).config(function($stateProvider, $urlRo
       products: function(mainService) {
         return mainService.getProducts();
       },
+
+      users: function(mainService) {
+        return mainService.getUsers();
+      },
     },
   }).state('admin', {
     url: '/admin',
